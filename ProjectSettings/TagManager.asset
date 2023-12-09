@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Ball
   - Ground
+  - ScoreLeft
+  - ScoreRight
+  - GoalLeft
+  - GoalRight
+  - GoalText
   layers:
   - Default
   - TransparentFX

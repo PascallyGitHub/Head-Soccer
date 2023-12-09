@@ -45,7 +45,7 @@ public class Player1 : MonoBehaviour
     {
         if (coll.gameObject.tag == "Ball")
         {
-            coll.rigidbody.AddForce(Vector2.up * kickPower, ForceMode2D.Impulse);
+            coll.rigidbody.AddForce(new Vector2(400, 500));
         }
     }
 
