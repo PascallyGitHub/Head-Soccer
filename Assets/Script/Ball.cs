@@ -27,4 +27,5 @@ public class Ball : MonoBehaviour
             Gui.S.ScoreGoalText(2);
         }
     }
+
 }

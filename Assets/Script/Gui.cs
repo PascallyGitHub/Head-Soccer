@@ -19,9 +19,6 @@ public class Gui : MonoBehaviour
         S = this;
         player1Goals = 0;
         player2Goals = 0;
-        rightScore = GameObject.Find("ScoreRight").GetComponent<Text>(); // TODO: instanziierung funktioniert nicht!!!
-        leftScore = GameObject.Find("ScoreLeft").GetComponent<Text>(); // TODO: instanziierung funktioniert nicht!!!
-        goalText = GameObject.Find("GoalText"); // TODO: instanziierung funktioniert nicht!!!
         goalText.SetActive(false);
     }
 
@@ -39,8 +36,8 @@ public class Gui : MonoBehaviour
     IEnumerator ScoreGoalTextEnum(int i)
     {
         goalText.SetActive(true);
-        goalText.GetComponent<Text>().text = "Player " + i + " goal!";
-        yield return new WaitForSeconds(1f); // display the "Player x goal!" sign for 1 second
+        goalText.GetComponent<Text>().text = "PLAYER " + i + " SCORED!";
+        yield return new WaitForSeconds(2f); // display the "Player x goal!" sign for 1 second
         goalText.SetActive(false);
     }
 }
