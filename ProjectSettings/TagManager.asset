@@ -53,3 +53,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Foreground
+    uniqueID: 887397395
+    locked: 0
+  - name: Score
+    uniqueID: 1078557289
+    locked: 0
