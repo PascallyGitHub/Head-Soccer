@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,16 +11,22 @@ public class Gui : MonoBehaviour
     public Text rightScore;
     public Text leftScore;
     public GameObject goalText;
+    public Text countdown;
 
+    public bool gameOver;
     public int player1Goals;
     public int player2Goals;
+    public int secondsUntilEndOfMatch;
 
     void Start()
     {
         S = this;
+        gameOver = false;
         player1Goals = 0;
         player2Goals = 0;
         goalText.SetActive(false);
+
+        InvokeRepeating("decreaseCountdown", 0f, 1f); // start decreasing countdown every second
     }
 
     void Update()
@@ -28,16 +35,55 @@ public class Gui : MonoBehaviour
         leftScore.text = player1Goals.ToString(); // update player1 goals
     }
 
-    public void ScoreGoalText(int i)
+    public void ScoreGoalText(String i)
     {
         StartCoroutine(ScoreGoalTextEnum(i)); // ???
     }
 
-    IEnumerator ScoreGoalTextEnum(int i)
+    IEnumerator ScoreGoalTextEnum(String i)
     {
         goalText.SetActive(true);
-        goalText.GetComponent<Text>().text = "PLAYER " + i + " SCORED!";
+        goalText.GetComponent<Text>().text = i + " SCORED!";
         yield return new WaitForSeconds(2f); // display the "Player x goal!" sign for 1 second
         goalText.SetActive(false);
+    }
+
+    public void GoalTextShowResult(String i)
+    {
+        StartCoroutine(GoalTextShowResultEnum(i));
+    }
+
+    IEnumerator GoalTextShowResultEnum(String i)
+    {
+        goalText.SetActive(true);
+        goalText.GetComponent<Text>().text = i;
+        yield return new WaitForSeconds(4f);
+        goalText.SetActive(false);
+    }
+
+    public void decreaseCountdown()
+    {
+        countdown.text = secondsUntilEndOfMatch.ToString();
+        secondsUntilEndOfMatch--;
+
+        if (secondsUntilEndOfMatch < 0)
+        {
+            // add some more code for when the game ends
+            gameOver = true;
+
+            if (player1Goals > player2Goals)
+            {
+                S.GoalTextShowResult("GERMANY WINS!");
+            } 
+            else if (player1Goals < player2Goals)
+            {
+                S.GoalTextShowResult("SCOTLAND WINS!");
+            }
+            else
+            {
+                S.GoalTextShowResult("DRAW!");
+            }
+            CancelInvoke("decreaseCountdown"); // stop repeating the process
+        }
     }
 }

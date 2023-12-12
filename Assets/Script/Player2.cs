@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEditor.U2D;
 using UnityEngine;
 
-public class Player1 : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
-    public Vector3 startPosition = new Vector3(-6, 0, 0);
+    public Vector3 startPosition = new Vector3(6, 0, 0);
     public Vector2 speed = new Vector2(10, 10);
     public float jump = 7;
     public float shootingPower = 500;
 
-    public static Player1 S;
+    public static Player2 S;
     public Rigidbody2D rigid;
     float inputX;
     float inputY;
@@ -24,14 +24,15 @@ public class Player1 : MonoBehaviour
 
     void Update()
     {
+        // reset inputs so that the player does not constantly move
         inputX = 0;
         inputY = 0;
 
         if (!Gui.S.gameOver) // if game ends, player stops moving
         {
             // get inputs for every axis. values between -1 and 1. 0 => button not pressed
-            inputX = Input.GetAxis("Horizontal Player 1");
-            inputY = Input.GetAxis("Vertical Player 1");
+            inputX = Input.GetAxis("Horizontal Player 2");
+            inputY = Input.GetAxis("Vertical Player 2");
 
             // move horizontal
             Vector3 movement = new Vector3(speed.x * inputX, rigid.velocity.y, 0);
@@ -62,7 +63,7 @@ public class Player1 : MonoBehaviour
         if (coll.gameObject.tag == "Ball")
         {
             coll.rigidbody.gravityScale = Ball.S.gravityScaleValue;
-            coll.rigidbody.AddForce(new Vector2(400, shootingPower)); // direction and strength of the shot
+            coll.rigidbody.AddForce(new Vector2(-400, shootingPower)); // direction and strength of the shot
         }
         if (coll.gameObject.tag == "Ground")
         {

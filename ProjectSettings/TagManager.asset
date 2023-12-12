@@ -13,6 +13,7 @@ TagManager:
   - GoalText
   - Player1
   - Player2
+  - Countdown
   layers:
   - Default
   - TransparentFX
