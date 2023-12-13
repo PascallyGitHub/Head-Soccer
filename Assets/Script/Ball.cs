@@ -6,8 +6,8 @@ public class Ball : MonoBehaviour
 {
     public static Ball S;
     Rigidbody2D rigid;
-    public Vector3 startPosition = new Vector3(0f, 3f, 0f);
-    public float gravityScaleValue = 1;
+    public Vector3 startPosition = new Vector3(0f, 2f, 0f);
+    public float gravityScaleValue = 1.5f;
 
     void Start()
     {
