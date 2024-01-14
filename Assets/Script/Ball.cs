@@ -6,13 +6,14 @@ public class Ball : MonoBehaviour
 {
     public static Ball S;
     Rigidbody2D rigid;
-    public Vector3 startPosition = new Vector3(0f, 2f, 0f);
+    public Vector3 startPosition = new Vector3(0f, 3f, 0f);
     public float gravityScaleValue = 1.5f;
 
-    void Start()
+    public void Start()
     {
         S = this;
         rigid = GetComponent<Rigidbody2D>();
+        transform.position = startPosition;
     }
 
     void Update()
@@ -50,9 +51,9 @@ public class Ball : MonoBehaviour
         transform.position = startPosition;
 
         // reset player1
-        Player1.S.transform.position = Player1.S.startPosition;
+        Player1.S.Start();
 
         // reset player2
-        Player2.S.transform.position = Player2.S.startPosition;
+        Player2.S.Start();
     }
 }

@@ -33,6 +33,16 @@ public class Gui : MonoBehaviour
     {
         rightScore.text = player2Goals.ToString(); // update player2 goals
         leftScore.text = player1Goals.ToString(); // update player1 goals
+
+        // RESET THE MATCH HERE !!!
+        if (gameOver && Player1.S.wantsRematch)
+        {
+            secondsUntilEndOfMatch = 120;
+            Start();
+            Player1.S.Start();
+            Player2.S.Start();
+            Ball.S.Start();
+        }
     }
 
     public void ScoreGoalText(String i)
@@ -83,6 +93,7 @@ public class Gui : MonoBehaviour
             {
                 S.GoalTextShowResult("DRAW!");
             }
+
             CancelInvoke("decreaseCountdown"); // stop repeating the process
         }
     }
